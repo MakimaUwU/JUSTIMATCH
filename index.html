@@ -38,7 +38,12 @@
     <!-- Secciones -->
     <div id="section-publish" class="section">
       <h2>Publicar Caso</h2>
-      <iframe id="form-cases"></iframe>
+      <iframe id="form-cases" title="Formulario Publicar Caso"
+        src="https://docs.google.com/forms/d/e/13TdjHUvgKe9SsaksaLR5c_xmEegalCygHTzl8nt7E7c/viewform?embedded=true"
+        loading="lazy">Cargando…</iframe>
+      <noscript>
+        <p>Si el formulario no se carga, <a href="https://docs.google.com/forms/d/e/13TdjHUvgKe9SsaksaLR5c_xmEegalCygHTzl8nt7E7c/viewform" target="_blank" rel="noopener">haz clic aquí</a> para abrirlo en una nueva pestaña.</p>
+      </noscript>
     </div>
 
     <div id="section-view" class="section">
@@ -53,7 +58,12 @@
 
     <div id="section-profile" class="section">
       <h2>Registro Abogado</h2>
-      <iframe id="form-lawyers"></iframe>
+      <iframe id="form-lawyers" title="Formulario Registro Abogado"
+        src="https://docs.google.com/forms/d/e/1ezxfdEsOaGvn8BUrVrzw6hDbgCcP2aFNbBoPiiNgVUQ/viewform?embedded=true"
+        loading="lazy">Cargando…</iframe>
+      <noscript>
+        <p>Si el formulario no se carga, <a href="https://docs.google.com/forms/d/e/1ezxfdEsOaGvn8BUrVrzw6hDbgCcP2aFNbBoPiiNgVUQ/viewform" target="_blank" rel="noopener">haz clic aquí</a> para abrirlo en una nueva pestaña.</p>
+      </noscript>
     </div>
 
     <div id="section-sponsors" class="section">
@@ -78,13 +88,6 @@
       sponsors: document.getElementById('section-sponsors')
     };
 
-    // Configurar formularios
-    document.getElementById('form-cases').src = 
-      `https://docs.google.com/forms/d/e/${FORM_CASES_ID}/viewform?embedded=true`;
-      
-    document.getElementById('form-lawyers').src = 
-      `https://docs.google.com/forms/d/e/${FORM_LAWYERS_ID}/viewform?embedded=true`;
-
     // Control de secciones
     function showSection(section) {
       Object.values(sections).forEach(sec => sec.style.display = 'none');
@@ -94,16 +97,13 @@
     document.getElementById('btn-publish').addEventListener('click', () => showSection(sections.publish));
     document.getElementById('btn-view').addEventListener('click', () => {
       showSection(sections.view);
-      sections.sponsors.style.display = 'block'; // Mostrar patrocinadores junto a casos
+      sections.sponsors.style.display = 'block';
       loadCases();
       loadSponsors();
     });
     document.getElementById('btn-profile').addEventListener('click', () => showSection(sections.profile));
 
-    // Cargar datos iniciales
-    window.addEventListener('DOMContentLoaded', () => {
-      showSection(sections.publish);
-    });
+    window.addEventListener('DOMContentLoaded', () => showSection(sections.publish));
 
     // Función para cargar casos desde Google Sheets
     async function loadCases() {
@@ -112,7 +112,6 @@
         const response = await fetch(url);
         const data = await response.json();
         const values = data.values || [];
-
         const tbody = document.querySelector('#cases-table tbody');
         tbody.innerHTML = values.map(row => `
           <tr>
@@ -131,13 +130,12 @@
         const response = await fetch(url);
         const data = await response.json();
         const values = data.values || [];
-
         const list = document.getElementById('sponsors-list');
         list.innerHTML = values.map(row => `
           <div class="sponsor-card">
             <strong>${row[0]}</strong> (${row[1]})<br>
             ${'⭐'.repeat(parseInt(row[2]))}<br>
-            <a href="${row[3]}" target="_blank">Contactar</a>
+            <a href="${row[3]}" target="_blank" rel="noopener">Contactar</a>
           </div>
         `).join('');
       } catch (error) {
@@ -147,3 +145,4 @@
   </script>
 </body>
 </html>
+
