@@ -1,6 +1,165 @@
-const CONFIG = {
-  FORM_USER_ID: '1642479346',
-  FORM_LAWYER_ID: '647697134',
-  SHEET_ID: '13TdjHUvgKe9SsaksaLR5c_xmEegalCygHTzl8nt7E7c',
-  API_KEY: 'AIzaSyDoH3rhmCm-8mYEcTuj__mhir0ARQXFQN0'
-};
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conectalegal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animations -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+  <!-- Configuration -->
+  <script>
+    const CONFIG = {
+      FORM_USER_ID: '1642479346',
+      FORM_LAWYER_ID: '647697134',
+      SHEET_ID: '13TdjHUvgKe9SsaksaLR5c_xmEegalCygHTzl8nt7E7c',
+      API_KEY: 'AIzaSyDoH3rhmCm-8mYEcTuj__mhir0ARQXFQN0'
+    };
+  </script>
+
+  <!-- Hero Section -->
+  <header class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20 overflow-hidden">
+    <div class="container mx-auto px-6 text-center" data-aos="fade-down">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Conectalegal</h1>
+      <p class="text-lg sm:text-2xl mb-8">Justicia rápida, directa y sin burocracia.</p>
+      <div class="flex justify-center gap-4">
+        <button id="btn-publish" class="bg-red-500 hover:bg-red-600 transform hover:scale-105 transition px-6 py-3 rounded-lg shadow-lg">Publicar Caso</button>
+        <button id="btn-view" class="bg-white text-blue-600 hover:bg-gray-100 transform hover:scale-105 transition px-6 py-3 rounded-lg shadow-lg">Ver Casos</button>
+        <button id="btn-profile" class="bg-gray-700 text-white hover:bg-gray-800 transform hover:scale-105 transition px-6 py-3 rounded-lg shadow-lg">Perfil Abogado</button>
+      </div>
+    </div>
+    <!-- Decorative SVG Circles -->
+    <div class="absolute -bottom-10 left-1/4 w-40 h-40 bg-white rounded-full mix-blend-overlay opacity-20"></div>
+    <div class="absolute -top-10 right-1/4 w-72 h-72 bg-white rounded-full mix-blend-overlay opacity-20"></div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-10 flex-grow">
+    <!-- Features Cards -->
+    <section class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16" data-aos="fade-up">
+      <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition">
+        <h3 class="text-xl font-bold mb-2">Publicación Express</h3>
+        <p class="text-gray-600">Publica tu caso en 30 segundos y conecta con abogados en tu zona.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition">
+        <h3 class="text-xl font-bold mb-2">Perfiles Verificados</h3>
+        <p class="text-gray-600">Abogados con insignia de verificación y reseñas reales de usuarios.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition">
+        <h3 class="text-xl font-bold mb-2">Notificaciones Automáticas</h3>
+        <p class="text-gray-600">Recibe alertas inmediatas cuando se publique un caso en tu área de práctica.</p>
+      </div>
+    </section>
+
+    <!-- Sponsored Profiles -->
+    <section id="sponsored" class="hidden mb-16" data-aos="zoom-in">
+      <h2 class="text-2xl font-bold mb-6">Perfiles Patrocinados</h2>
+      <div id="sponsor-cards" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+    <!-- Dynamic Sections -->
+    <section id="section-publish" class="hidden" data-aos="fade-left">
+      <h2 class="text-2xl font-bold mb-4">Publicar Caso</h2>
+      <div class="bg-white p-6 rounded-2xl shadow-xl">
+        <iframe :src="`https://docs.google.com/forms/d/e/${CONFIG.FORM_USER_ID}/viewform?embedded=true`" class="w-full h-96 rounded-lg"></iframe>
+      </div>
+    </section>
+
+    <section id="section-view" class="hidden" data-aos="fade-right">
+      <h2 class="text-2xl font-bold mb-4">Casos Activos</h2>
+      <div class="bg-white p-6 rounded-2xl shadow-xl overflow-x-auto">
+        <table id="cases-table" class="min-w-full divide-y divide-gray-200"></table>
+      </div>
+    </section>
+
+    <section id="section-profile" class="hidden" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-4">Perfil de Abogado</h2>
+      <div class="bg-white p-6 rounded-2xl shadow-xl">
+        <iframe :src="`https://docs.google.com/forms/d/e/${CONFIG.FORM_LAWYER_ID}/viewform?embedded=true`" class="w-full h-96 rounded-lg"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Ad Banner -->
+  <footer class="bg-gray-800 text-gray-200 py-4" data-aos="fade-up">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-sm">Anuncio: Espacio para tu firma legal. <a href="#" class="underline">Contáctanos</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+    // Initialize DataTable
+    let table;
+    $(document).ready(() => {
+      table = $('#cases-table').DataTable({
+        data: [],
+        columns: [
+          { title: 'Fecha', data: 'timestamp' },
+          { title: 'Categoría', data: 'categoria' },
+          { title: 'Ubicación', data: 'ubicacion' },
+          { title: 'Descripción', data: 'descripcion' }
+        ],
+        paging: true,
+        searching: true
+      });
+    });
+
+    // Button handlers
+    $('#btn-publish').click(() => showSection('publish'));
+    $('#btn-view').click(() => { showSection('view'); loadCases(); loadSponsored(); });
+    $('#btn-profile').click(() => showSection('profile'));
+
+    function showSection(sec) {
+      $('#section-publish, #section-view, #section-profile, #sponsored').addClass('hidden');
+      if (sec === 'view') $('#sponsored').removeClass('hidden');
+      $(`#section-${sec}`).removeClass('hidden');
+    }
+
+    // Load cases from Google Sheets
+    function loadCases() {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/Casos?key=${CONFIG.API_KEY}`;
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const rows = data.values.slice(1).map(r => ({ timestamp: r[0], categoria: r[1], ubicacion: r[2], descripcion: r[3] }));
+          table.clear().rows.add(rows).draw();
+        })
+        .catch(err => console.error('Error cargando casos:', err));
+    }
+
+    // Load sponsored profiles (static or fetched similarly)
+    function loadSponsored() {
+      const container = $('#sponsor-cards').empty();
+      // Example static entry, replace with dynamic fetch if needed:
+      container.append(`
+        <div class="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:scale-105">
+          <h3 class="text-lg font-semibold mb-1">Abogado Juan Pérez</h3>
+          <p class="text-sm text-gray-800 mb-3">Especialista en divorcios express</p>
+          <div class="flex gap-2 items-center">
+            <span class="text-yellow-900">⭐️⭐️⭐️⭐️⭐️</span>
+            <a href="https://wa.me/521234567890" class="ml-auto text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">WhatsApp</a>
+          </div>
+        </div>
+      `);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
