@@ -1,238 +1,279 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ConectaLegal</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    /* Paleta de azules y degradados */
-    :root {
-      --blue-light: #e0f7fa;
-      --blue: #00acc1;
-      --blue-dark: #00838f;
-      --gradient-start: #00acc1;
-      --gradient-end: #00838f;
-      --text-dark: #263238;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--blue-light);
-      color: var(--text-dark);
-      padding-bottom: 70px;
-      line-height: 1.5;
-    }
-    header {
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    header::after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      width: 150%;
-      height: 80px;
-      background: white;
-      border-radius: 50%;
-      transform: rotate(0deg);
-    }
-    header h1 {
-      font-size: 2rem;
-      z-index: 1;
-      position: relative;
-    }
-    header p {
-      font-size: 1rem;
-      z-index: 1;
-      position: relative;
-      opacity: 0.9;
-    }
-    main {
-      padding: 1rem;
-    }
-    .section {
-      margin-bottom: 2.5rem;
-    }
-    h2 {
-      margin-bottom: 0.75rem;
-      color: var(--blue-dark);
-      font-weight: 600;
-      position: relative;
-    }
-    h2::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 4px;
-      background: var(--gradient-start);
-      border-radius: 2px;
-      margin-top: 4px;
-    }
-    .card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 1rem;
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-    iframe {
-      width: 100%;
-      border: none;
-      border-radius: 1rem;
-      height: 350px;
-    }
-    /* Botón flotante degradado */
-    .fab {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease;
-      z-index: 2;
-    }
-    .fab:hover {
-      transform: scale(1.1);
-    }
-    /* Barra inferior con efecto activo */
-    nav.bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-around;
-      padding: 0.5rem 0;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
-    }
-    nav.bottom-nav a {
-      text-decoration: none;
-      color: var(--blue-dark);
-      font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0.2rem;
-      transition: color 0.3s ease;
-    }
-    nav.bottom-nav a.active,
-    nav.bottom-nav a:hover {
-      color: var(--gradient-start);
-    }
-    nav.bottom-nav a svg {
-      width: 26px;
-      height: 26px;
-      margin-bottom: 0.2rem;
-    }
-    footer {
-      padding: 1rem;
-      font-size: 0.75rem;
-      background: #fafafa;
-      color: #555;
-      text-align: center;
-    }
-    footer p {
-      margin-bottom: 0.4rem;
-      line-height: 1.4;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConectaLegal - Justicia rápida y directa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        :root {
+            --azul-oscuro: #1a365d;
+            --azul-medio: #2a5298;
+            --azul-claro: #e3f2fd;
+        }
+
+        .header {
+            background: var(--azul-oscuro);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-bottom {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: var(--azul-medio);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .float-btn {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background: var(--azul-medio);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background: var(--azul-medio);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .destacados {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .destacado-card {
+            min-width: 80%;
+            scroll-snap-align: start;
+            background: var(--azul-claro);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .advertencias {
+            background: var(--azul-claro);
+            padding: 2rem 1rem;
+            font-size: 0.8rem;
+            margin-bottom: 60px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>ConectaLegal</h1>
-    <p>Justicia rápida, directa y sin burocracia.</p>
-  </header>
+    <header class="header">
+        <h1>ConectaLegal</h1>
+        <p>Justicia rápida, directa y sin burocracia</p>
+    </header>
 
-  <main>
-    <!-- Sección Casos -->
-    <section id="casos" class="section">
-      <h2>Casos</h2>
-      <div class="card">
-        <iframe src="URL_PUBLIC_SHEET_CASOS"></iframe>
-      </div>
-    </section>
+    <main>
+        <!-- Sección de Casos -->
+        <section id="casos" class="section active">
+            <div class="card">
+                <h2>Casos Recientes</h2>
+                <div id="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true"></div>
+            </div>
+        </section>
 
-    <!-- Sección Abogados -->
-    <section id="abogados" class="section">
-      <h2>Abogados</h2>
-      <div class="card">
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml?gid=893916319&single=true"></iframe>
-      </div>
-    </section>
+        <!-- Sección de Abogados -->
+        <section id="abogados" class="section">
+            <div class="card">
+                <h2>Abogados Registrados</h2>
+                <div id="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml"></div>
+            </div>
+        </section>
 
-    <!-- Sección Mi Estado -->
-    <section id="mi-estado" class="section">
-      <h2>Mi Estado</h2>
-      <div class="card">
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml" height="300"></iframe>
-      </div>
-    </section>
+        <!-- Sección de Casos Aceptados -->
+        <section id="casos-aceptados" class="section">
+            <div class="card">
+                <h2>Casos Aceptados</h2>
+                <div id="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml"></div>
+            </div>
+        </section>
 
-    <!-- Sección Destacados -->
-    <section id="destacados" class="section">
-      <h2>Abogados Destacados</h2>
-      <div class="card">
-        <iframe src="URL_PUBLIC_SHEET_DESTACADOS" height="300"></iframe>
-      </div>
-    </section>
-  </main>
+        <!-- Sección de Destacados -->
+        <section id="destacados" class="section">
+            <div class="destacados">
+                <div class="destacado-card">
+                    <h3>Dra. Ana Pérez</h3>
+                    <p>Especialidad: Derecho Familiar</p>
+                    <p>⭐ Más de 100 casos resueltos</p>
+                </div>
+                <div class="destacado-card">
+                    <h3>Lic. Carlos Rojas</h3>
+                    <p>Especialidad: Derecho Laboral</p>
+                    <p>🏅 Experiencia: 15 años</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <!-- Botón flotante Publicar Caso -->
-  <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true" class="fab" title="Publicar Caso">+</a>
-
-  <!-- Barra de navegación inferior -->
-  <nav class="bottom-nav">
-    <a href="#casos" class="active">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3h-8z"/></svg>
-      Casos
+    <!-- Botón de Publicación -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform?usp=dialog" class="float-btn">
+        <i class="fas fa-plus"></i>
     </a>
-    <a href="#abogados">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-      Abogados
-    </a>
-    <a href="#mi-estado">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 15l-5-5 1.41-1.41L13 14.17l4.59-4.58L19 11z"/></svg>
-      Mi Estado
-    </a>
-    <a href="#destacados">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-      Destacados
-    </a>
-  </nav>
 
-  <footer>
-    <p><strong>Datos Públicos:</strong> toda información (ID, descripción y ubicación) es visible para los abogados registrados.</p>
-    <p><strong>Sin responsabilidad legal:</strong> ConectaLegal es un intermediario tecnológico; no ofrece asesoría legal.</p>
-    <p><strong>Protección del anonimato:</strong> no se recogen datos personales (nombre, correo ni teléfono).</p>
-    <p><strong>Uso responsable:</strong> el usuario garantiza la veracidad de sus datos y el uso adecuado de la plataforma.</p>
-  </footer>
+    <!-- Navegación Inferior -->
+    <nav class="nav-bottom">
+        <div class="nav-item" onclick="showSection('casos')">
+            <i class="fas fa-list"></i>
+            Casos
+        </div>
+        <div class="nav-item" onclick="showSection('abogados')">
+            <i class="fas fa-balance-scale"></i>
+            Abogados
+        </div>
+        <div class="nav-item" onclick="showSection('casos-aceptados')">
+            <i class="fas fa-check-circle"></i>
+            Aceptados
+        </div>
+        <div class="nav-item" onclick="showSection('destacados')">
+            <i class="fas fa-star"></i>
+            Destacados
+        </div>
+    </nav>
+
+    <!-- Advertencias Legales -->
+    <div class="advertencias">
+        <ul>
+            <li>✅ Todos los datos son públicos para abogados registrados</li>
+            <li>⚠️ No somos responsables por el asesoramiento recibido</li>
+            <li>🔒 Mantenemos tu anonimato completo</li>
+            <li>📄 Verifica la información antes de publicar</li>
+        </ul>
+    </div>
+
+    <script>
+        // Función de navegación
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Datos de ejemplo - Casos
+        const casos = [
+            {id: "CASE123", desc: "Desalojo injustificado en Col. Centro", ubicacion: "CDMX"},
+            {id: "CASE456", desc: "Pensión alimenticia no pagada", ubicacion: "Guadalajara"},
+            {id: "CASE789", desc: "Problemas de herencia familiar", ubicacion: "Monterrey"}
+        ];
+
+        // Datos de ejemplo - Casos Aceptados
+        const casosAceptados = [
+            {
+                id: "CASE101",
+                abogado: "Dra. Laura Gómez",
+                estatus: "En proceso",
+                fecha: "14/03/2024"
+            },
+            {
+                id: "CASE202",
+                abogado: "Lic. Pedro Sánchez",
+                estatus: "Resuelto",
+                fecha: "10/03/2024"
+            }
+        ];
+
+        // Renderizar casos
+        const listaCasos = document.getElementById('lista-casos');
+        casos.forEach(caso => {
+            listaCasos.innerHTML += `
+                <div class="card" style="margin: 0.5rem 0">
+                    <p><strong>ID:</strong> ${caso.id}</p>
+                    <p>${caso.desc}</p>
+                    <small>📍 ${caso.ubicacion}</small>
+                </div>
+            `;
+        });
+
+        // Renderizar casos aceptados
+        const listaAceptados = document.getElementById('lista-casos-aceptados');
+        casosAceptados.forEach(caso => {
+            listaAceptados.innerHTML += `
+                <div class="card" style="margin: 0.5rem 0">
+                    <p><strong>Caso ID:</strong> ${caso.id}</p>
+                    <p><strong>Abogado:</strong> ${caso.abogado}</p>
+                    <p>📌 Estatus: ${caso.estatus}</p>
+                    <small>📅 ${caso.fecha}</small>
+                </div>
+            `;
+        });
+    </script>
 </body>
 </html>
