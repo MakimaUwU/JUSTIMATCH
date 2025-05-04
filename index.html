@@ -22,7 +22,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
     body { background: var(--bg-page); color: var(--text-dark); height: 100vh; overflow: hidden; }
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
 
     /* App container */
     .app { display: flex; flex-direction: column; height: 100%; }
@@ -63,7 +63,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .step .step-number {
-      background: var(--accent-primary);
       background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
       color: #fff;
       width: 36px; height: 36px;
@@ -108,6 +107,7 @@
       color: #fff;
       box-shadow: var(--shadow-light);
       transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
     }
     .fab:hover {
       transform: scale(1.15);
@@ -135,6 +135,7 @@
       color: #999;
       transition: background var(--transition), color var(--transition);
       display: flex; flex-direction: column; align-items: center;
+      cursor: pointer;
     }
     .nav-item.active {
       background: var(--bg-page);
@@ -164,7 +165,7 @@
     <header class="header">
       <h1>JustiMatch</h1>
       <p>Conecta con tu abogado ideal al instante</p>
-    </header>
+    </div>
     <div class="content">
       <!-- Tutorial Steps -->
       <div class="steps">
@@ -215,10 +216,10 @@
 
     <!-- Floating Action Buttons -->
     <div class="fab-container">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=header" class="fab primary" title="Aceptar un Caso"><i class="fas fa-handshake"></i></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="fab success" title="Registro de Abogados"><i class="fas fa-user-tie"></i></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header" class="fab warning" title="Solicitar Destacado"><i class="fas fa-certificate"></i></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform?usp=header" class="fab primary" title="Nuevo Caso"><i class="fas fa-plus"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=header" class="fab primary" title="Aceptar un Caso" target="_blank" rel="noopener noreferrer"><i class="fas fa-handshake"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="fab success" title="Registro de Abogados" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-tie"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header" class="fab warning" title="Solicitar Destacado" target="_blank" rel="noopener noreferrer"><i class="fas fa-certificate"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform?usp=header" class="fab primary" title="Nuevo Caso" target="_blank" rel="noopener noreferrer"><i class="fas fa-plus"></i></a>
     </div>
 
     <!-- Bottom Navigation -->
