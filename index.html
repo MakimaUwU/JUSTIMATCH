@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConectaLegal - Plataforma Legal</title>
+    <title>ConectaLegal - Plataforma Legal Integral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -25,6 +25,7 @@
             --azul-claro: #e3f2fd;
             --verde: #28a745;
             --naranja: #fd7e14;
+            --morado: #6f42c1;
         }
 
         .header {
@@ -62,7 +63,7 @@
 
         .float-btns {
             position: fixed;
-            bottom: 70px;
+            bottom: 150px;
             right: 20px;
             display: flex;
             flex-direction: column;
@@ -150,24 +151,26 @@
 
         <!-- Sección de Destacados -->
         <section id="destacados" class="section">
-            <div class="destacados">
-                <!-- Contenido destacados desde Google Sheets -->
-                <iframe class="sheet-container"
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRAgPX_vv9aPUikhcvrq8--jV3zJKXnwAGffM83c9sisSGJbD9XLMfU2XeJYyNwei2LG7-XDTbLH0yn/pubhtml?gid=1266344638&single=true">
-                </iframe>
-            </div>
+            <iframe class="sheet-container"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRAgPX_vv9aPUikhcvrq8--jV3zJKXnwAGffM83c9sisSGJbD9XLMfU2XeJYyNwei2LG7-XDTbLH0yn/pubhtml?gid=1266344638&single=true">
+            </iframe>
         </section>
     </main>
 
     <!-- Botones Flotantes -->
     <div class="float-btns">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="float-btn" style="background: var(--verde)" 
-           title="Registrarse como Abogado">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=header" class="float-btn" style="background: var(--morado)" 
+           title="Aceptar un Caso">
+            <i class="fas fa-handshake"></i>
+        </a>
+        
+        <a href="[URL_REGISTRO_ABOGADO]" class="float-btn" style="background: var(--verde)" 
+           title="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header">
             <i class="fas fa-user-tie"></i>
         </a>
         
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header" class="float-btn" style="background: var(--naranja)" 
-           title="Solicitar ser Destacado">
+        <a href="[URL_SOLICITAR_DESTAQUE]" class="float-btn" style="background: var(--naranja)" 
+           title="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header">
             <i class="fas fa-certificate"></i>
         </a>
         
