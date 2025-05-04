@@ -1,304 +1,238 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ConectaLegal ⚖️</title>
-    <style>
-        :root {
-            --azul-oscuro: #0A1F5C;
-            --azul-destacado: #1A73E8;
-            --gradiente-azul: linear-gradient(135deg, #1A73E8 0%, #0A1F5C 100%);
-            --sombra: 0 4px 12px rgba(0,0,0,0.15);
-            --radio: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background: #F8F9FF;
-            height: 100vh;
-            padding-bottom: 80px;
-        }
-
-        /* Header tipo aplicación */
-        .app-header {
-            background: var(--gradiente-azul);
-            color: white;
-            padding: 20px 16px;
-            box-shadow: var(--sombra);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .app-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Secciones tipo pestañas */
-        .seccion {
-            display: none;
-            padding: 16px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .seccion.activa {
-            display: block;
-        }
-
-        /* Barra de navegación inferior estilo Uber */
-        .nav-inferior {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: white;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            padding: 12px 0;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-            border-radius: var(--radio) var(--radio) 0 0;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #6B7280;
-            transition: all 0.2s ease;
-            padding: 8px;
-        }
-
-        .nav-item.activa {
-            color: var(--azul-destacado);
-            transform: translateY(-4px);
-        }
-
-        .nav-item i {
-            font-size: 22px;
-        }
-
-        .nav-item span {
-            font-size: 0.75em;
-            font-weight: 500;
-        }
-
-        /* Tarjetas modernas */
-        .tarjeta-caso {
-            background: white;
-            border-radius: var(--radio);
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: var(--sombra);
-            transition: transform 0.2s ease;
-        }
-
-        .tarjeta-caso:active {
-            transform: scale(0.98);
-        }
-
-        .badge-ubicacion {
-            background: var(--azul-claro);
-            color: var(--azul-oscuro);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Botón flotante destacado */
-        .boton-principal {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: var(--gradiente-azul);
-            color: white;
-            padding: 18px 24px;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: var(--sombra);
-            text-decoration: none;
-            font-weight: 500;
-            z-index: 100;
-        }
-
-        /* Formularios integrados mejorados */
-        .contenedor-formulario {
-            background: white;
-            border-radius: var(--radio);
-            box-shadow: var(--sombra);
-            overflow: hidden;
-            margin: 16px 0;
-        }
-
-        .formulario-embed {
-            width: 100%;
-            height: 80vh;
-            border: none;
-        }
-
-        /* Carrusel de destacados */
-        .carrusel {
-            display: grid;
-            grid-auto-flow: column;
-            gap: 16px;
-            overflow-x: auto;
-            padding: 16px 0;
-            scroll-snap-type: x mandatory;
-        }
-
-        .tarjeta-destacado {
-            scroll-snap-align: start;
-            background: white;
-            border-radius: var(--radio);
-            padding: 16px;
-            width: 80vw;
-            box-shadow: var(--sombra);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .avatar-abogado {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--azul-claro);
-            margin: 0 auto;
-        }
-
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Mejoras para móvil */
-        @media (max-width: 480px) {
-            .seccion {
-                padding: 16px 12px;
-            }
-            
-            .boton-principal {
-                bottom: 90px;
-                right: 16px;
-                padding: 16px 20px;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConectaLegal</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Paleta de azules y degradados */
+    :root {
+      --blue-light: #e0f7fa;
+      --blue: #00acc1;
+      --blue-dark: #00838f;
+      --gradient-start: #00acc1;
+      --gradient-end: #00838f;
+      --text-dark: #263238;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--blue-light);
+      color: var(--text-dark);
+      padding-bottom: 70px;
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      width: 150%;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      transform: rotate(0deg);
+    }
+    header h1 {
+      font-size: 2rem;
+      z-index: 1;
+      position: relative;
+    }
+    header p {
+      font-size: 1rem;
+      z-index: 1;
+      position: relative;
+      opacity: 0.9;
+    }
+    main {
+      padding: 1rem;
+    }
+    .section {
+      margin-bottom: 2.5rem;
+    }
+    h2 {
+      margin-bottom: 0.75rem;
+      color: var(--blue-dark);
+      font-weight: 600;
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: var(--gradient-start);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+    .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 1rem;
+      height: 350px;
+    }
+    /* Botón flotante degradado */
+    .fab {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+      z-index: 2;
+    }
+    .fab:hover {
+      transform: scale(1.1);
+    }
+    /* Barra inferior con efecto activo */
+    nav.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    }
+    nav.bottom-nav a {
+      text-decoration: none;
+      color: var(--blue-dark);
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.2rem;
+      transition: color 0.3s ease;
+    }
+    nav.bottom-nav a.active,
+    nav.bottom-nav a:hover {
+      color: var(--gradient-start);
+    }
+    nav.bottom-nav a svg {
+      width: 26px;
+      height: 26px;
+      margin-bottom: 0.2rem;
+    }
+    footer {
+      padding: 1rem;
+      font-size: 0.75rem;
+      background: #fafafa;
+      color: #555;
+      text-align: center;
+    }
+    footer p {
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+  </style>
 </head>
 <body>
-    <!-- Encabezado de la aplicación -->
-    <header class="app-header">
-        <div class="app-title">
-            <span class="material-icons-round">gavel</span>
-            ConectaLegal
-        </div>
-    </header>
+  <header>
+    <h1>ConectaLegal</h1>
+    <p>Justicia rápida, directa y sin burocracia.</p>
+  </header>
 
-    <!-- Secciones principales -->
-    <main>
-        <section id="inicio" class="seccion activa">
-            <div class="carrusel">
-                <!-- Ejemplo de tarjeta destacada -->
-                <div class="tarjeta-destacado">
-                    <div class="avatar-abogado"></div>
-                    <h3>Dra. Ana Pérez</h3>
-                    <p class="especialidad">Derecho Familiar ⚖️</p>
-                    <p class="razon-destacado">🌟 Más de 150 casos resueltos</p>
-                </div>
-                <!-- Más tarjetas... -->
-            </div>
-            
-            <h2>Casos Recientes</h2>
-            <!-- Casos dinámicos irían aquí -->
-        </section>
+  <main>
+    <!-- Sección Casos -->
+    <section id="casos" class="section">
+      <h2>Casos</h2>
+      <div class="card">
+        <iframe src="URL_PUBLIC_SHEET_CASOS"></iframe>
+      </div>
+    </section>
 
-        <section id="casos" class="seccion">
-            <div class="contenedor-formulario">
-                <iframe class="formulario-embed" 
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true"
-                        loading="lazy"></iframe>
-            </div>
-        </section>
+    <!-- Sección Abogados -->
+    <section id="abogados" class="section">
+      <h2>Abogados</h2>
+      <div class="card">
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml?gid=893916319&single=true"></iframe>
+      </div>
+    </section>
 
-        <section id="abogados" class="seccion">
-            <div class="contenedor-formulario">
-                <iframe class="formulario-embed"
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml?gid=893916319&single=true"
-                        loading="lazy"></iframe>
-            </div>
-        </section>
+    <!-- Sección Mi Estado -->
+    <section id="mi-estado" class="section">
+      <h2>Mi Estado</h2>
+      <div class="card">
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml" height="300"></iframe>
+      </div>
+    </section>
 
-        <section id="perfil" class="seccion">
-            <div class="contenedor-formulario">
-                <iframe class="formulario-embed"
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml?gid=1784301673&single=true"
-                        loading="lazy"></iframe>
-            </div>
-        </section>
-    </main>
+    <!-- Sección Destacados -->
+    <section id="destacados" class="section">
+      <h2>Abogados Destacados</h2>
+      <div class="card">
+        <iframe src="URL_PUBLIC_SHEET_DESTACADOS" height="300"></iframe>
+      </div>
+    </section>
+  </main>
 
-    <!-- Botón flotante principal -->
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=dialog" class="boton-principal">
-        <span class="material-icons-round">add</span>
-        Nuevo Caso
+  <!-- Botón flotante Publicar Caso -->
+  <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true" class="fab" title="Publicar Caso">+</a>
+
+  <!-- Barra de navegación inferior -->
+  <nav class="bottom-nav">
+    <a href="#casos" class="active">
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3h-8z"/></svg>
+      Casos
     </a>
+    <a href="#abogados">
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      Abogados
+    </a>
+    <a href="#mi-estado">
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 15l-5-5 1.41-1.41L13 14.17l4.59-4.58L19 11z"/></svg>
+      Mi Estado
+    </a>
+    <a href="#destacados">
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      Destacados
+    </a>
+  </nav>
 
-    <!-- Navegación inferior -->
-    <nav class="nav-inferior">
-        <div class="nav-item activa" onclick="mostrarSeccion('inicio')">
-            <i class="material-icons-round">home</i>
-            <span>Inicio</span>
-        </div>
-        <div class="nav-item" onclick="mostrarSeccion('casos')">
-            <i class="material-icons-round">list_alt</i>
-            <span>Casos</span>
-        </div>
-        <div class="nav-item" onclick="mostrarSeccion('abogados')">
-            <i class="material-icons-round">people</i>
-            <span>Abogados</span>
-        </div>
-        <div class="nav-item" onclick="mostrarSeccion('perfil')">
-            <i class="material-icons-round">person</i>
-            <span>Mi Estado</span>
-        </div>
-    </nav>
-
-    <script>
-        function mostrarSeccion(seccionId) {
-            // Actualizar navegación
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('activa');
-            });
-            event.currentTarget.classList.add('activa');
-            
-            // Mostrar sección
-            document.querySelectorAll('.seccion').forEach(seccion => {
-                seccion.classList.remove('activa');
-            });
-            document.getElementById(seccionId).classList.add('activa');
-        }
-
-        // Efecto de carga suave
-        window.addEventListener('load', () => {
-            document.body.style.opacity = 1;
-        });
-    </script>
+  <footer>
+    <p><strong>Datos Públicos:</strong> toda información (ID, descripción y ubicación) es visible para los abogados registrados.</p>
+    <p><strong>Sin responsabilidad legal:</strong> ConectaLegal es un intermediario tecnológico; no ofrece asesoría legal.</p>
+    <p><strong>Protección del anonimato:</strong> no se recogen datos personales (nombre, correo ni teléfono).</p>
+    <p><strong>Uso responsable:</strong> el usuario garantiza la veracidad de sus datos y el uso adecuado de la plataforma.</p>
+  </footer>
 </body>
 </html>
