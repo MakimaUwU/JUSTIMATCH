@@ -3,22 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConectaLegal - Plataforma Legal Integral</title>
+    <title>ConectaLegal - Tu Conexión Legal Directa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: #f0f8ff;
-            color: #333;
-            line-height: 1.6;
-        }
-
         :root {
             --azul-oscuro: #1a365d;
             --azul-medio: #2a5298;
@@ -26,16 +13,95 @@
             --verde: #28a745;
             --naranja: #fd7e14;
             --morado: #6f42c1;
+            --degradado: linear-gradient(135deg, #1a365d 0%, #2a5298 100%);
+            --sombra: 0 4px 20px rgba(0,0,0,0.1);
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #2d3436;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* Header estilo app */
         .header {
-            background: var(--azul-oscuro);
+            background: var(--degradado);
             color: white;
-            padding: 1rem;
+            padding: 1.2rem 1rem;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--sombra);
         }
 
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Tutorial interactivo */
+        .tutorial {
+            background: white;
+            border-radius: 15px;
+            margin: 1rem;
+            padding: 1.2rem;
+            box-shadow: var(--sombra);
+        }
+
+        .paso {
+            display: flex;
+            align-items: center;
+            margin: 1.2rem 0;
+            gap: 1rem;
+        }
+
+        .numero-paso {
+            width: 30px;
+            height: 30px;
+            background: var(--azul-medio);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Secciones principales */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Tarjetas modernas */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1rem;
+            box-shadow: var(--sombra);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Navegación estilo app */
         .nav-bottom {
             position: fixed;
             bottom: 0;
@@ -43,80 +109,117 @@
             background: white;
             display: flex;
             justify-content: space-around;
-            padding: 1rem 0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            padding: 0.8rem 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
             z-index: 1000;
+            border-radius: 20px 20px 0 0;
         }
 
         .nav-item {
             text-align: center;
             color: var(--azul-medio);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
+            transition: all 0.2s;
+            opacity: 0.7;
+            padding: 0.5rem;
+            border-radius: 10px;
+            flex: 1;
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            background: var(--azul-claro);
+            transform: scale(1.05);
         }
 
         .nav-item i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             display: block;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
+        /* Botones flotantes */
         .float-btns {
             position: fixed;
-            bottom: 150px;
-            right: 20px;
+            bottom: 130px;
+            right: 15px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 1000;
         }
 
         .float-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: var(--sombra);
             color: white;
             text-decoration: none;
-            transition: transform 0.3s;
+            transition: all 0.2s;
         }
 
         .float-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
         }
 
+        /* Iframes integrados */
         .sheet-container {
-            width: 100%;
-            height: 70vh;
+            width: calc(100% - 2rem);
+            height: 65vh;
             border: none;
-            margin-top: 1rem;
+            margin: 1rem;
+            border-radius: 12px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: var(--sombra);
         }
 
+        /* Advertencias legales */
         .advertencias {
             background: var(--azul-claro);
-            padding: 2rem 1rem;
+            padding: 1.2rem;
+            margin: 1rem;
+            border-radius: 12px;
             font-size: 0.8rem;
-            margin-bottom: 60px;
+            color: var(--azul-oscuro);
         }
 
-        .section {
-            display: none;
-            padding: 1rem;
+        .advertencias li {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .active {
-            display: block;
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (min-width: 768px) {
-            .sheet-container {
-                height: 75vh;
+        /* Modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: #ffffff;
+            }
+            
+            .card, .sheet-container, .tutorial {
+                background: #2d2d2d;
+                color: #ffffff;
+            }
+            
+            .nav-bottom {
+                background: #2d2d2d;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            }
+            
+            .advertencias {
+                background: #1a365d;
             }
         }
     </style>
@@ -124,32 +227,54 @@
 <body>
     <header class="header">
         <h1>ConectaLegal</h1>
-        <p>Justicia rápida, directa y sin burocracia</p>
+        <p>Justicia rápida y sin intermediarios</p>
     </header>
 
+    <!-- Tutorial de uso -->
+    <div class="tutorial">
+        <div class="paso">
+            <div class="numero-paso">1</div>
+            <div>
+                <h3>Publica tu caso</h3>
+                <p>Describe tu situación legal de forma anónima en segundos</p>
+            </div>
+        </div>
+        <div class="paso">
+            <div class="numero-paso">2</div>
+            <div>
+                <h3>Espera respuestas</h3>
+                <p>Abogados verificados revisarán tu caso</p>
+            </div>
+        </div>
+        <div class="paso">
+            <div class="numero-paso">3</div>
+            <div>
+                <h3>Contacta directamente</h3>
+                <p>Recibe ayuda profesional sin revelar tu identidad</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secciones principales -->
     <main>
-        <!-- Sección de Casos -->
         <section id="casos" class="section active">
             <iframe class="sheet-container" 
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true">
             </iframe>
         </section>
 
-        <!-- Sección de Abogados -->
         <section id="abogados" class="section">
             <iframe class="sheet-container"
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml?gid=893916319&single=true">
             </iframe>
         </section>
 
-        <!-- Sección de Casos Aceptados -->
         <section id="casos-aceptados" class="section">
             <iframe class="sheet-container"
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml?gid=1784301673&single=true">
             </iframe>
         </section>
 
-        <!-- Sección de Destacados -->
         <section id="destacados" class="section">
             <iframe class="sheet-container"
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRAgPX_vv9aPUikhcvrq8--jV3zJKXnwAGffM83c9sisSGJbD9XLMfU2XeJYyNwei2LG7-XDTbLH0yn/pubhtml?gid=1266344638&single=true">
@@ -157,32 +282,29 @@
         </section>
     </main>
 
-    <!-- Botones Flotantes -->
+    <!-- Botones de acción flotantes -->
     <div class="float-btns">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=header" class="float-btn" style="background: var(--morado)" 
            title="Aceptar un Caso">
             <i class="fas fa-handshake"></i>
         </a>
-        
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="float-btn" style="background: var(--verde)" 
-           title="Registrarse como Abogado">
+           title="Registro de Abogados">
             <i class="fas fa-user-tie"></i>
         </a>
-        
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header" class="float-btn" style="background: var(--naranja)" 
-           title="Solicitar ser Destacado">
+           title="Solicitar Destaque">
             <i class="fas fa-certificate"></i>
         </a>
-        
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform?usp=header" class="float-btn" style="background: var(--azul-medio)" 
-           title="Publicar Nuevo Caso">
+           title="Nuevo Caso">
             <i class="fas fa-plus"></i>
         </a>
     </div>
 
-    <!-- Navegación Inferior -->
+    <!-- Navegación inferior -->
     <nav class="nav-bottom">
-        <div class="nav-item" onclick="showSection('casos')">
+        <div class="nav-item active" onclick="showSection('casos')">
             <i class="fas fa-list"></i>
             Casos
         </div>
@@ -191,7 +313,7 @@
             Abogados
         </div>
         <div class="nav-item" onclick="showSection('casos-aceptados')">
-            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-check-double"></i>
             Aceptados
         </div>
         <div class="nav-item" onclick="showSection('destacados')">
@@ -200,33 +322,36 @@
         </div>
     </nav>
 
-    <!-- Advertencias Legales -->
+    <!-- Advertencias legales -->
     <div class="advertencias">
         <ul>
-            <li>✅ Todos los datos son públicos para abogados registrados</li>
-            <li>⚠️ No somos responsables por el asesoramiento recibido</li>
-            <li>🔒 Mantenemos tu anonimato completo</li>
-            <li>📄 Verifica la información antes de publicar</li>
+            <li><i class="fas fa-shield-alt"></i> Totalmente anónimo - Nunca pedimos datos personales</li>
+            <li><i class="fas fa-exclamation-triangle"></i> No somos proveedores de servicios legales</li>
+            <li><i class="fas fa-user-check"></i> Abogados verificados mediante registro profesional</li>
+            <li><i class="fas fa-lock"></i> Protegemos tu privacidad en cada paso</li>
         </ul>
     </div>
 
     <script>
-        // Función para cambiar entre secciones
+        // Gestión de navegación
         function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
+            // Remover clases activas
+            document.querySelectorAll('.nav-item, .section').forEach(element => {
+                element.classList.remove('active');
             });
+            
+            // Activar sección y elemento de navegación
             document.getElementById(sectionId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            // Recargar iframe si existe
+            const iframe = document.getElementById(sectionId).querySelector('iframe');
+            if(iframe) iframe.contentWindow.location.reload();
         }
 
-        // Actualizar iframes al cambiar sección
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const iframes = document.querySelectorAll('.sheet-container');
-                iframes.forEach(iframe => {
-                    iframe.contentWindow.location.reload();
-                });
-            });
+        // Carga inicial
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '1';
         });
     </script>
 </body>
