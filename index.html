@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConectaLegal - Justicia rápida y directa</title>
+    <title>ConectaLegal - Plataforma Legal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -23,6 +23,8 @@
             --azul-oscuro: #1a365d;
             --azul-medio: #2a5298;
             --azul-claro: #e3f2fd;
+            --verde: #28a745;
+            --naranja: #fd7e14;
         }
 
         .header {
@@ -42,6 +44,7 @@
             justify-content: space-around;
             padding: 1rem 0;
             box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
         }
 
         .nav-item {
@@ -57,20 +60,17 @@
             margin-bottom: 0.3rem;
         }
 
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .float-btn {
+        .float-btns {
             position: fixed;
             bottom: 70px;
             right: 20px;
-            background: var(--azul-medio);
-            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn {
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -78,45 +78,23 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 100;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 0.5rem;
-        }
-
-        button {
-            background: var(--azul-medio);
             color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .sheet-container {
             width: 100%;
-            font-size: 1rem;
-        }
-
-        .destacados {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 1rem;
-            gap: 1rem;
-        }
-
-        .destacado-card {
-            min-width: 80%;
-            scroll-snap-align: start;
-            background: var(--azul-claro);
+            height: 70vh;
+            border: none;
+            margin-top: 1rem;
+            background: white;
             border-radius: 10px;
-            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .advertencias {
@@ -128,10 +106,17 @@
 
         .section {
             display: none;
+            padding: 1rem;
         }
 
         .active {
             display: block;
+        }
+
+        @media (min-width: 768px) {
+            .sheet-container {
+                height: 75vh;
+            }
         }
     </style>
 </head>
@@ -144,49 +129,53 @@
     <main>
         <!-- Sección de Casos -->
         <section id="casos" class="section active">
-            <div class="card">
-                <h2>Casos Recientes</h2>
-                <div id="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true"></div>
-            </div>
+            <iframe class="sheet-container" 
+                src="https://docs.google.com/spreadsheets/d/140UWpNUd5Q1Y0zp9BOeD82z-lFObDOBuZYPBn7pcw6c/edit?resourcekey#gid=1481392441">
+            </iframe>
         </section>
 
         <!-- Sección de Abogados -->
         <section id="abogados" class="section">
-            <div class="card">
-                <h2>Abogados Registrados</h2>
-                <div id="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml"></div>
-            </div>
+            <iframe class="sheet-container"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml">
+            </iframe>
         </section>
 
         <!-- Sección de Casos Aceptados -->
         <section id="casos-aceptados" class="section">
-            <div class="card">
-                <h2>Casos Aceptados</h2>
-                <div id="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml"></div>
-            </div>
+            <iframe class="sheet-container"
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml">
+            </iframe>
         </section>
 
         <!-- Sección de Destacados -->
         <section id="destacados" class="section">
             <div class="destacados">
-                <div class="destacado-card">
-                    <h3>Dra. Ana Pérez</h3>
-                    <p>Especialidad: Derecho Familiar</p>
-                    <p>⭐ Más de 100 casos resueltos</p>
-                </div>
-                <div class="destacado-card">
-                    <h3>Lic. Carlos Rojas</h3>
-                    <p>Especialidad: Derecho Laboral</p>
-                    <p>🏅 Experiencia: 15 años</p>
-                </div>
+                <!-- Contenido destacados desde Google Sheets -->
+                <iframe class="sheet-container"
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRAgPX_vv9aPUikhcvrq8--jV3zJKXnwAGffM83c9sisSGJbD9XLMfU2XeJYyNwei2LG7-XDTbLH0yn/pubhtml">
+                </iframe>
             </div>
         </section>
     </main>
 
-    <!-- Botón de Publicación -->
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform?usp=dialog" class="float-btn">
-        <i class="fas fa-plus"></i>
-    </a>
+    <!-- Botones Flotantes -->
+    <div class="float-btns">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="float-btn" style="background: var(--verde)" 
+           title="Registrarse como Abogado">
+            <i class="fas fa-user-tie"></i>
+        </a>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header" class="float-btn" style="background: var(--naranja)" 
+           title="Solicitar ser Destacado">
+            <i class="fas fa-certificate"></i>
+        </a>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="float-btn" style="background: var(--azul-medio)" 
+           title="Publicar Nuevo Caso">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
 
     <!-- Navegación Inferior -->
     <nav class="nav-bottom">
@@ -219,7 +208,7 @@
     </div>
 
     <script>
-        // Función de navegación
+        // Función para cambiar entre secciones
         function showSection(sectionId) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
@@ -227,52 +216,14 @@
             document.getElementById(sectionId).classList.add('active');
         }
 
-        // Datos de ejemplo - Casos
-        const casos = [
-            {id: "CASE123", desc: "Desalojo injustificado en Col. Centro", ubicacion: "CDMX"},
-            {id: "CASE456", desc: "Pensión alimenticia no pagada", ubicacion: "Guadalajara"},
-            {id: "CASE789", desc: "Problemas de herencia familiar", ubicacion: "Monterrey"}
-        ];
-
-        // Datos de ejemplo - Casos Aceptados
-        const casosAceptados = [
-            {
-                id: "CASE101",
-                abogado: "Dra. Laura Gómez",
-                estatus: "En proceso",
-                fecha: "14/03/2024"
-            },
-            {
-                id: "CASE202",
-                abogado: "Lic. Pedro Sánchez",
-                estatus: "Resuelto",
-                fecha: "10/03/2024"
-            }
-        ];
-
-        // Renderizar casos
-        const listaCasos = document.getElementById('lista-casos');
-        casos.forEach(caso => {
-            listaCasos.innerHTML += `
-                <div class="card" style="margin: 0.5rem 0">
-                    <p><strong>ID:</strong> ${caso.id}</p>
-                    <p>${caso.desc}</p>
-                    <small>📍 ${caso.ubicacion}</small>
-                </div>
-            `;
-        });
-
-        // Renderizar casos aceptados
-        const listaAceptados = document.getElementById('lista-casos-aceptados');
-        casosAceptados.forEach(caso => {
-            listaAceptados.innerHTML += `
-                <div class="card" style="margin: 0.5rem 0">
-                    <p><strong>Caso ID:</strong> ${caso.id}</p>
-                    <p><strong>Abogado:</strong> ${caso.abogado}</p>
-                    <p>📌 Estatus: ${caso.estatus}</p>
-                    <small>📅 ${caso.fecha}</small>
-                </div>
-            `;
+        // Actualizar iframes al cambiar sección
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const iframes = document.querySelectorAll('.sheet-container');
+                iframes.forEach(iframe => {
+                    iframe.contentWindow.location.reload();
+                });
+            });
         });
     </script>
 </body>
