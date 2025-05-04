@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConectaLegal - Tu Conexión Legal Directa</title>
+    <title>ConectaLegal - Plataforma Legal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -31,7 +31,6 @@
             padding-bottom: 80px;
         }
 
-        /* Header estilo app */
         .header {
             background: var(--degradado);
             color: white;
@@ -43,12 +42,6 @@
             box-shadow: var(--sombra);
         }
 
-        .header h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.3rem;
-        }
-
-        /* Tutorial interactivo */
         .tutorial {
             background: white;
             border-radius: 15px;
@@ -74,10 +67,8 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            flex-shrink: 0;
         }
 
-        /* Secciones principales */
         .section {
             display: none;
             animation: fadeIn 0.3s ease-out;
@@ -87,21 +78,14 @@
             display: block;
         }
 
-        /* Tarjetas modernas */
         .card {
             background: white;
             border-radius: 12px;
             padding: 1.2rem;
             margin: 1rem;
             box-shadow: var(--sombra);
-            transition: transform 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Navegación estilo app */
         .nav-bottom {
             position: fixed;
             bottom: 0;
@@ -120,11 +104,11 @@
             color: var(--azul-medio);
             font-size: 0.8rem;
             cursor: pointer;
-            transition: all 0.2s;
-            opacity: 0.7;
             padding: 0.5rem;
             border-radius: 10px;
             flex: 1;
+            opacity: 0.7;
+            transition: all 0.2s;
         }
 
         .nav-item.active {
@@ -139,7 +123,6 @@
             margin-bottom: 0.2rem;
         }
 
-        /* Botones flotantes */
         .float-btns {
             position: fixed;
             bottom: 130px;
@@ -163,11 +146,6 @@
             transition: all 0.2s;
         }
 
-        .float-btn:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* Iframes integrados */
         .sheet-container {
             width: calc(100% - 2rem);
             height: 65vh;
@@ -178,84 +156,55 @@
             box-shadow: var(--sombra);
         }
 
-        /* Advertencias legales */
         .advertencias {
-            background: var(--azul-claro);
-            padding: 1.2rem;
+            background: white;
+            padding: 1.5rem;
             margin: 1rem;
             border-radius: 12px;
-            font-size: 0.8rem;
-            color: var(--azul-oscuro);
+            box-shadow: var(--sombra);
+            color: #666;
+            font-size: 0.75rem;
+            border: 1px solid #eee;
         }
 
-        .advertencias li {
-            margin: 0.8rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Modo oscuro */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #1a1a1a;
-                color: #ffffff;
-            }
-            
-            .card, .sheet-container, .tutorial {
-                background: #2d2d2d;
-                color: #ffffff;
-            }
-            
-            .nav-bottom {
-                background: #2d2d2d;
-                box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-            }
-            
-            .advertencias {
-                background: #1a365d;
-            }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <h1>ConectaLegal</h1>
-        <p>Justicia rápida y sin intermediarios</p>
+        <p>Conexión legal directa y segura</p>
     </header>
 
-    <!-- Tutorial de uso -->
     <div class="tutorial">
         <div class="paso">
             <div class="numero-paso">1</div>
             <div>
                 <h3>Publica tu caso</h3>
-                <p>Describe tu situación legal de forma anónima en segundos</p>
+                <p>Crea un ID único y describe tu situación legal</p>
             </div>
         </div>
+        
         <div class="paso">
             <div class="numero-paso">2</div>
             <div>
-                <h3>Espera respuestas</h3>
-                <p>Abogados verificados revisarán tu caso</p>
+                <h3>Revisa casos aceptados</h3>
+                <p>Busca tu ID único en la sección correspondiente</p>
             </div>
         </div>
+        
         <div class="paso">
             <div class="numero-paso">3</div>
             <div>
-                <h3>Contacta directamente</h3>
-                <p>Recibe ayuda profesional sin revelar tu identidad</p>
+                <h3>Contacto directo</h3>
+                <p>Recibe los datos del abogado que aceptó tu caso</p>
             </div>
         </div>
     </div>
 
-    <!-- Secciones principales -->
     <main>
         <section id="casos" class="section active">
             <iframe class="sheet-container" 
@@ -270,6 +219,10 @@
         </section>
 
         <section id="casos-aceptados" class="section">
+            <div class="card">
+                <h3>Consulta tu caso</h3>
+                <p>Busca tu ID único en la lista siguiente</p>
+            </div>
             <iframe class="sheet-container"
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml?gid=1784301673&single=true">
             </iframe>
@@ -282,7 +235,6 @@
         </section>
     </main>
 
-    <!-- Botones de acción flotantes -->
     <div class="float-btns">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=header" class="float-btn" style="background: var(--morado)" 
            title="Aceptar un Caso">
@@ -302,7 +254,6 @@
         </a>
     </div>
 
-    <!-- Navegación inferior -->
     <nav class="nav-bottom">
         <div class="nav-item active" onclick="showSection('casos')">
             <i class="fas fa-list"></i>
@@ -322,34 +273,32 @@
         </div>
     </nav>
 
-    <!-- Advertencias legales -->
     <div class="advertencias">
+        <h4>Advertencias Legales:</h4>
         <ul>
-            <li><i class="fas fa-shield-alt"></i> Totalmente anónimo - Nunca pedimos datos personales</li>
-            <li><i class="fas fa-exclamation-triangle"></i> No somos proveedores de servicios legales</li>
-            <li><i class="fas fa-user-check"></i> Abogados verificados mediante registro profesional</li>
-            <li><i class="fas fa-lock"></i> Protegemos tu privacidad en cada paso</li>
+            <li>⚠️ La plataforma solo conecta usuarios con profesionales, no provee asesoría legal</li>
+            <li>🔒 Los datos personales no son requeridos ni almacenados</li>
+            <li>📄 Los usuarios son responsables de la veracidad de la información proporcionada</li>
+            <li>⚖️ Los casos deben ajustarse a las leyes locales aplicables</li>
+            <li>📅 Los tiempos de respuesta pueden variar según disponibilidad de profesionales</li>
+            <li>🔍 Los abogados son responsables de verificar su competencia para cada caso</li>
+            <li>🚫 Prohibido su uso para actividades ilegales o fraudulentas</li>
+            <li>📧 Cualquier comunicación externa a la plataforma es responsabilidad de los participantes</li>
         </ul>
     </div>
 
     <script>
-        // Gestión de navegación
         function showSection(sectionId) {
-            // Remover clases activas
             document.querySelectorAll('.nav-item, .section').forEach(element => {
                 element.classList.remove('active');
             });
-            
-            // Activar sección y elemento de navegación
             document.getElementById(sectionId).classList.add('active');
             event.currentTarget.classList.add('active');
             
-            // Recargar iframe si existe
             const iframe = document.getElementById(sectionId).querySelector('iframe');
             if(iframe) iframe.contentWindow.location.reload();
         }
 
-        // Carga inicial
         document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = '1';
         });
