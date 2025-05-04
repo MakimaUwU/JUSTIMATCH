@@ -2,32 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>JustiMatch</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    /* ============================
+       VARIABLES DE DISEÑO
+    ============================= */
     :root {
       --gradient-start: #1e3a8a;
       --gradient-end:   #3b82f6;
       --bg-page:        #f0f4ff;
       --bg-card:        #ffffff;
       --accent-primary: #2563eb;
-      --accent-secondary: #1e40af;
-      --accent-success:  #10b981;
-      --accent-warning:  #f59e0b;
+      --accent-success: #10b981;
+      --accent-warning: #f59e0b;
       --text-dark:      #1f2937;
       --shadow-light:   0 6px 18px rgba(0,0,0,0.1);
       --radius-lg:      18px;
       --transition:     0.3s ease;
+      --font-base:      'Segoe UI', sans-serif;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+
+    /* ============================
+       RESET & GLOBAL
+    ============================= */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-base); }
     body { background: var(--bg-page); color: var(--text-dark); height: 100vh; overflow: hidden; }
     a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; }
 
-    /* App container */
+    /* ============================
+       CONTENEDOR PRINCIPAL
+    ============================= */
     .app { display: flex; flex-direction: column; height: 100%; }
 
-    /* Header */
+    /* ============================
+       HEADER
+    ============================= */
     .header {
       background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
       color: #fff;
@@ -36,135 +48,150 @@
       border-bottom-left-radius: var(--radius-lg);
       border-bottom-right-radius: var(--radius-lg);
       box-shadow: var(--shadow-light);
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+      position: relative;
     }
-    .header h1 { font-size: 1.7rem; letter-spacing: 1px; }
-    .header p { font-size: 0.85rem; opacity: 0.9; margin-top: 0.2rem; }
+    .header h1 { font-size: 1.8rem; letter-spacing: 1px; }
+    .header p { font-size: 0.9rem; opacity: 0.9; margin-top: 0.3rem; }
 
-    /* Content */
-    .content { flex: 1; overflow-x: hidden; overflow-y: auto; padding: 1rem; }
+    /* Botón de ayuda */
+    .help-btn {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: rgba(255,255,255,0.3);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .help-btn:hover { background: rgba(255,255,255,0.5); }
+    .help-btn i { color: #fff; font-size: 1.2rem; }
 
-    /* Tutorial steps */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1.2rem; }
+    /* ============================
+       PANEL DE CONTENIDO
+    ============================= */
+    .content { flex: 1; overflow-y: auto; padding: 1rem; }
+
+    /* ============================
+       INSTRUCCIONES DETALLADAS (MODAL)
+    ============================= */
+    .modal-backdrop {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center;
+      z-index: 20;
+    }
+    .modal {
+      background: #fff; border-radius: var(--radius-lg); padding: 1.2rem;
+      max-width: 90%; max-height: 80%; overflow-y: auto; box-shadow: var(--shadow-light);
+    }
+    .modal h4 { margin-bottom: 0.8rem; color: var(--accent-primary); }
+    .modal p { margin-bottom: 0.6rem; font-size: 0.9rem; line-height: 1.4; }
+    .modal .close {
+      position: absolute; top: 8px; right: 12px; font-size: 1.2rem; color: #666;
+      background: none;
+    }
+
+    /* ============================
+       PASOS TUTORIALES
+    ============================= */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
     .step {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-light);
       padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-align: center;
       transition: transform var(--transition), box-shadow var(--transition);
     }
-    .step:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    .step .step-number {
+    .step:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .step-number {
       background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-      color: #fff;
-      width: 36px; height: 36px;
-      border-radius: 50%;
+      color: #fff; width: 36px; height: 36px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      box-shadow: var(--shadow-light);
+      font-weight: bold; margin: 0 auto 0.5rem;
     }
-    .step h3 { font-size: 1.05rem; margin-bottom: 0.3rem; color: var(--text-dark); }
-    .step small { font-size: 0.75rem; opacity: 0.75; }
+    .step h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .step small { font-size: 0.75rem; color: #555; }
 
-    /* Sheets */
+    /* ============================
+       SECCIONES DE DATOS
+    ============================= */
     .sheet {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-light);
       overflow: hidden;
       margin-bottom: 1rem;
-      height: 320px;
+      height: 300px;
       border: 1px solid #e5e7eb;
     }
-    .sheet iframe { border: none; width: 100%; height: 100%; }
+    .sheet iframe { width: 100%; height: 100%; border: none; }
     .section { display: none; animation: fadeIn var(--transition); }
     .section.active { display: block; }
 
-    /* Floating Action Buttons */
+    /* ============================
+       BOTONES FLOTANTES
+    ============================= */
     .fab-container {
-      position: fixed;
-      bottom: 90px;
-      right: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      z-index: 10;
+      position: fixed; bottom: 90px; right: 1.2rem;
+      display: flex; flex-direction: column; gap: 0.8rem; z-index: 10;
     }
     .fab {
-      width: 60px; height: 60px;
-      border-radius: 50%;
+      width: 56px; height: 56px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: #fff;
-      box-shadow: var(--shadow-light);
+      color: #fff; box-shadow: var(--shadow-light);
       transition: transform var(--transition), box-shadow var(--transition);
-      cursor: pointer;
     }
-    .fab:hover {
-      transform: scale(1.15);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-    }
+    .fab:hover { transform: scale(1.1); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
     .fab.primary { background: var(--accent-primary); }
     .fab.success { background: var(--accent-success); }
     .fab.warning { background: var(--accent-warning); }
 
-    /* Bottom Navigation */
+    /* ============================
+       NAVEGACIÓN INFERIOR
+    ============================= */
     .bottom-nav {
-      position: fixed;
-      bottom: 0; width: 100%;
-      background: var(--bg-card);
-      box-shadow: 0 -6px 18px rgba(0,0,0,0.08);
-      display: flex;
-      border-top-left-radius: var(--radius-lg);
-      border-top-right-radius: var(--radius-lg);
+      position: fixed; bottom: 0; width: 100%; background: var(--bg-card);
+      box-shadow: 0 -6px 18px rgba(0,0,0,0.08); display: flex;
+      border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);
     }
     .nav-item {
-      flex: 1; text-align: center;
-      padding: 0.85rem 0;
-      font-size: 0.8rem;
-      color: #667085;
-      transition: background var(--transition), color var(--transition);
-      display: flex; flex-direction: column; align-items: center;
-      cursor: pointer;
+      flex: 1; text-align: center; padding: 0.8rem 0; font-size: 0.8rem;
+      color: #667085; display: flex; flex-direction: column; align-items: center;
+      transition: color var(--transition), background var(--transition);
     }
-    .nav-item.active {
-      background: var(--bg-page);
-      color: var(--accent-primary);
-    }
-    .nav-item i { font-size: 1.4rem; margin-bottom: 0.25rem; }
+    .nav-item.active { background: var(--bg-page); color: var(--accent-primary); }
+    .nav-item i { font-size: 1.3rem; margin-bottom: 0.2rem; }
 
-    /* Warnings */
+    /* ============================
+       ADVERTENCIAS
+    ============================= */
     .warnings {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-light);
-      padding: 1rem;
-      font-size: 0.75rem;
-      color: #4b5563;
-      margin-bottom: 4.5rem;
-      border-left: 4px solid var(--accent-warning);
+      background: var(--bg-card); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-light); padding: 1rem; font-size: 0.75rem;
+      color: #4b5563; margin-bottom: 5rem; border-left: 4px solid var(--accent-warning);
     }
     .warnings h4 { margin-bottom: 0.5rem; color: var(--accent-warning); }
     .warnings li { margin-bottom: 0.3rem; }
 
+    /* ANIMACIONES */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
   </style>
 </head>
 <body>
   <div class="app">
+
+    <!-- HEADER -->
     <header class="header">
       <h1>JustiMatch</h1>
       <p>Conecta con tu abogado ideal al instante</p>
+      <button class="help-btn" onclick="toggleHelp()"><i class="fas fa-question"></i></button>
     </header>
+
+    <!-- CONTENIDO -->
     <div class="content">
-      <!-- Tutorial Steps -->
+
+      <!-- PASOS TUTORIALES -->
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
@@ -183,43 +210,52 @@
         </div>
       </div>
 
-      <!-- Data Sections -->
+      <!-- SECCIONES DE DATOS -->
       <div id="casos" class="section active">
-        <div class="sheet"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true"></iframe></div>
+        <div class="sheet">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTdef3go4RMzmuh59aKXNkcLXyqB0mjqgqE6ukwICi_owfbVkAw5tzTa9eGp36FU10qjH2pvZh6-8cg/pubhtml?gid=1481392441&single=true"></iframe>
+        </div>
       </div>
       <div id="abogados" class="section">
-        <div class="sheet"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml?gid=893916319&single=true"></iframe></div>
+        <div class="sheet">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSXDvgQpPRrlqf0x6gz7IJ2URZExQJ5dsWRApQqdr3Z9LiCgC44Lsz0wbUmoe9FJyBcIQTdewiBHtmX/pubhtml?gid=893916319&single=true"></iframe>
+        </div>
       </div>
       <div id="casos-aceptados" class="section">
-        <div class="sheet"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml?gid=1784301673&single=true"></iframe></div>
+        <div class="sheet">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNBtSqVWEMQlfRCiMS7f3ZfdmGUJETIK8L9LuJDwIHVZMT5onjkqKdWS65zsxV7RtK__CvSVp8iTAz/pubhtml?gid=1784301673&single=true"></iframe>
+        </div>
       </div>
       <div id="destacados" class="section">
-        <div class="sheet"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRAgPX_vv9aPUikhcvrq8--jV3zJKXnwAGffM83c9sisSGJbD9XLMfU2XeJYyNwei2LG7-XDTbLH0yn/pubhtml?gid=1266344638&single=true"></iframe></div>
+        <div class="sheet">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRAgPX_vv9aPUikhcvrq8--jV3zJKXnwAGffM83c9sisSGJbD9XLMfU2XeJYyNwei2LG7-XDTbLH0yn/pubhtml?gid=1266344638&single=true"></iframe>
+        </div>
       </div>
 
-      <!-- Legal Warnings -->
+      <!-- ADVERTENCIAS LEGALES -->
       <div class="warnings">
         <h4>Advertencias Legales:</h4>
         <ul>
-          <li>Plataforma conecta usuarios y abogados, no da asesoría.</li>
-          <li>Sin almacenamiento de datos personales.</li>
-          <li>Veracidad de la información, responsabilidad del usuario.</li>
-          <li>Adecuarse a leyes locales.</li>
-          <li>Tiempos de respuesta variables.</li>
+          <li>La plataforma conecta usuarios y abogados; no provee asesoría.</li>
+          <li>No almacenamos datos personales.</li>
+          <li>El usuario es responsable de la veracidad de su información.</li>
+          <li>Debe seguir las leyes locales aplicables.</li>
+          <li>Los tiempos de respuesta pueden variar.</li>
           <li>Prohibido uso ilegal o fraudulento.</li>
         </ul>
       </div>
+
     </div>
 
-    <!-- Floating Action Buttons -->
+    <!-- BOTONES FLOTANTES -->
     <div class="fab-container">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform?usp=header" class="fab primary" title="Aceptar un Caso" target="_blank" rel="noopener noreferrer"><i class="fas fa-handshake"></i></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform?usp=header" class="fab success" title="Registro de Abogados" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-tie"></i></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform?usp=header" class="fab warning" title="Solicitar Destacado" target="_blank" rel="noopener noreferrer"><i class="fas fa-certificate"></i></a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform?usp=header" class="fab primary" title="Nuevo Caso" target="_blank" rel="noopener noreferrer"><i class="fas fa-plus"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLLTuxzx8W3rVTY1V_AuU-6aHFKyRhkTy4lt3RW88xjYU9nA/viewform" class="fab primary" title="Aceptar un Caso" target="_blank" rel="noopener noreferrer"><i class="fas fa-handshake"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN09ra-1qGG8BvKki4m-Er3s97_eUPzeBEkPpjhYRpqGRlEQ/viewform" class="fab success" title="Registro de Abogados" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-tie"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdepO0D7H8N2n7VitFZmNLsL3K2RFdj2CZZPXM57FHPIsabUQ/viewform" class="fab warning" title="Solicitar Destacado" target="_blank" rel="noopener noreferrer"><i class="fas fa-certificate"></i></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTLWcDmIpRsALYDetP4GNpMtwevgeDBJoyMhM3o9eqAh8AzA/viewform" class="fab primary" title="Nuevo Caso" target="_blank" rel="noopener noreferrer"><i class="fas fa-plus"></i></a>
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- NAVEGACIÓN INFERIOR -->
     <nav class="bottom-nav">
       <div class="nav-item active" onclick="showSection('casos', this)"><i class="fas fa-list"></i>Casos</div>
       <div class="nav-item" onclick="showSection('abogados', this)"><i class="fas fa-balance-scale"></i>Abogados</div>
@@ -227,21 +263,43 @@
       <div class="nav-item" onclick="showSection('destacados', this)"><i class="fas fa-star"></i>Destacados</div>
     </nav>
 
-    <script>
-      function showSection(id, el) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        el.classList.add('active');
-        const iframe = document.querySelector(`#${id} iframe`);
-        if (iframe) iframe.contentWindow.location.reload();
-      }
-      document.addEventListener('DOMContentLoaded', () => {
-        showSection('casos', document.querySelector('.nav-item.active'));
-      });
-    </script>
+    <!-- MODAL DE INSTRUCCIONES -->
+    <div class="modal-backdrop" id="helpModal">
+      <div class="modal">
+        <button class="close" onclick="toggleHelp()"><i class="fas fa-times"></i></button>
+        <h4>¿Cómo funciona JustiMatch?</h4>
+        <p><strong>1. Publica tu caso:</strong> Pulsa el botón <i class="fas fa-plus"></i> "Nuevo Caso" y completa el formulario con los detalles de tu situación legal. Al enviar, recibirás un ID único.</p>
+        <p><strong>2. Revisa ofertas:</strong> En la pestaña "Casos", busca tu ID para ver a los abogados que han mostrado interés. También puedes consultar directamente los listados de "Abogados" y "Aceptados".</p>
+        <p><strong>3. Conecta:</strong> Cuando un abogado acepte tu caso, aparecerá en la sección "Aceptados". Pulsa su oferta para obtener contacto directo y acordar detalles.</p>
+        <p><strong>4. Destacados:</strong> Si deseas que tu caso o perfil aparezca destacado, utiliza el botón <i class="fas fa-certificate"></i> y envía la solicitud.</p>
+        <p><strong>Navegación:</strong> Usa la barra inferior para moverte rápidamente entre secciones. Los iconos se iluminarán según tu selección.</p>
+        <p><strong>Atención:</strong> Este es un servicio de conexión; todas las gestiones y acuerdos se realizan fuera de la plataforma.</p>
+      </div>
+    </div>
+
   </div>
+
+  <script>
+    function showSection(id, el) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+      const iframe = document.querySelector(`#${id} iframe`);
+      if (iframe) iframe.contentWindow.location.reload();
+    }
+
+    function toggleHelp() {
+      const modal = document.getElementById('helpModal');
+      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('casos', document.querySelector('.nav-item.active'));
+    });
+  </script>
 </body>
 </html>
+
 
 
